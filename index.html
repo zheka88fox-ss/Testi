@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>🎧</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial;
+      text-align: center;
+    }
+    .text {
+      font-size: 24px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="text">Нажми в любом месте 👆</div>
+
+<audio id="player" autoplay muted loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const player = document.getElementById("player");
+
+  // Включение звука при первом действии
+  function enableSound() {
+    player.muted = false;
+    player.play();
+    document.body.innerHTML = "";
+    document.removeEventListener("click", enableSound);
+    document.removeEventListener("touchstart", enableSound);
+  }
+
+  document.addEventListener("click", enableSound);
+  document.addEventListener("touchstart", enableSound);
+</script>
+
+</body>
+</html>
